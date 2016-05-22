@@ -13,8 +13,11 @@ C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecog
 C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.exe
 C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.pdb
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\bin\Debug\PlatesRecognition.exe.config
+C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.exe
+C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.pdb
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\bin\Debug\PlatesRecognition.exe
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\bin\Debug\PlatesRecognition.pdb
+C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csprojResolveAssemblyReference.cache
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\MainWindow.g.cs
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\App.g.cs
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition_MarkupCompile.cache
@@ -23,6 +26,3 @@ C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\Main
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.g.resources
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.Properties.Resources.resources
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csproj.GenerateResource.Cache
-C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.exe
-C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.pdb
-C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csprojResolveAssemblyReference.cache
