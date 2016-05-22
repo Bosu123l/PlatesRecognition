@@ -141,7 +141,7 @@ namespace PlatesRecognition.Views
             var w = SourceMediaElement.ActualWidth;
             var h = SourceMediaElement.ActualHeight;
 
-            System.Drawing.Size dpi = new System.Drawing.Size(120, 120);
+            System.Drawing.Size dpi = new System.Drawing.Size(96, 96);
 
             RenderTargetBitmap bmp = new RenderTargetBitmap((int)w, (int)h, dpi.Width, dpi.Height, PixelFormats.Pbgra32);
 

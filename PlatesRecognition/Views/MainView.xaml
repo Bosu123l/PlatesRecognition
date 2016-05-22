@@ -40,10 +40,10 @@
 
             <Canvas x:Name="Canvas" Background="Transparent" 
                    Grid.Column="0" Grid.Row="0">
-                <Line x:Name="FirstLine" Stroke="Red" />
-                <Line x:Name="SecondLine" Stroke="Red" />
-                <Line x:Name="ThirdLine" Stroke="Red" />
-                <Line x:Name="FourthLine" Stroke="Red" />
+                <Line x:Name="FirstLine" Stroke="Red" StrokeThickness="3" />
+                <Line x:Name="SecondLine" Stroke="Red"  StrokeThickness="3"/>
+                <Line x:Name="ThirdLine" Stroke="Red"  StrokeThickness="3"/>
+                <Line x:Name="FourthLine" Stroke="Red"  StrokeThickness="3"/>
             </Canvas>
                        
 
