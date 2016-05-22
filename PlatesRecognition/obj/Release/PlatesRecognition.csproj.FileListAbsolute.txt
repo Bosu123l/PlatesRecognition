@@ -1,0 +1,14 @@
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\bin\Release\PlatesRecognition.exe.config
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\bin\Release\PlatesRecognition.exe
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\bin\Release\PlatesRecognition.pdb
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition.csprojResolveAssemblyReference.cache
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\MainWindow.g.cs
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\App.g.cs
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition_MarkupCompile.cache
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition_MarkupCompile.lref
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\MainWindow.baml
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition.g.resources
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition.Properties.Resources.resources
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition.csproj.GenerateResource.Cache
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition.exe
+C:\Users\mateu\Desktop\PlatesRecognition\PlatesRecognition\obj\Release\PlatesRecognition.pdb
