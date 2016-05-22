@@ -29,7 +29,6 @@ C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\Plat
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\bin\Debug\PlatesRecognition.exe.config
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.exe
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.pdb
-C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csprojResolveAssemblyReference.cache
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\MainWindow.g.cs
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\Views\MainView.g.cs
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\App.g.cs

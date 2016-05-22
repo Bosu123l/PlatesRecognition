@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PlatesRecognition.Views.MainView"
+﻿<UserControl x:Name="userControl" x:Class="PlatesRecognition.Views.MainView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,24 +18,15 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Recognition result list -->
-        <ListView x:Name="ResultsListView" BorderThickness="0"
-                  Grid.Column="0" Grid.Row="1" Margin="10 10 10 10"
+        <DataGrid ItemsSource="{Binding ResultsList, ElementName=userControl}" AutoGenerateColumns="False"  Grid.Column="0" Grid.Row="1" Margin="10 10 10 10"
                   ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding PlateCharacters}" Header="Recognized plate" Width="*"/>
+                <DataGridTextColumn Binding="{Binding TimeSpan}" Header="Time stamp" Width="*"/>
+            </DataGrid.Columns>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="{Binding PlateCharacters}" HorizontalAlignment="Left"/>
-                        <TextBlock Text=" ["/>
-                        <TextBlock Text="{Binding TimeSpan}" HorizontalAlignment="Right"/>
-                        <TextBlock Text="]"/>
-                    </WrapPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+        </DataGrid>
 
-        </ListView>
-        <!-- Media content -->
         <Grid Grid.Column="1" Grid.Row="1" Margin="10">
 
             <Grid.RowDefinitions>
@@ -43,22 +34,29 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
+         
 
-            <MediaElement x:Name="SourceMediaElement" Volume="0" Stretch="Fill"
-                          Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <ContentControl Content="{Binding SourceMediaElement,ElementName=userControl}"  Grid.Column="0" Grid.Row="0" />
 
-            <Image x:Name="SplashScreenImage" Source="splash_screen.png" Stretch="Fill"
-                   Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <Canvas x:Name="Canvas" Background="Transparent" 
+                   Grid.Column="0" Grid.Row="0">
+                <Line x:Name="FirstLine" Stroke="Red" />
+                <Line x:Name="SecondLine" Stroke="Red" />
+                <Line x:Name="ThirdLine" Stroke="Red" />
+                <Line x:Name="FourthLine" Stroke="Red" />
+            </Canvas>
+                       
+
+            <Slider x:Name="Slider"  Grid.Row="1" HorizontalAlignment="Stretch" 
+                    Value="{Binding VideoAcutalPosition,ElementName=userControl}" Maximum="100"  />
+         
+           
 
             <TextBlock x:Name="VideoTimeTextBlock"
                        Grid.Column="1" Grid.Row="1"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
-                       Visibility="Collapsed"/>
+                       Visibility="Collapsed" Height="0" Margin="0,20" Width="0"/>
 
             <!--
             <Button x:Name="PlayButton" Content="Stop"
