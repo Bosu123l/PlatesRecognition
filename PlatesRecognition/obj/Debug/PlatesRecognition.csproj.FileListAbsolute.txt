@@ -26,3 +26,6 @@ C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\Main
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.g.resources
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.Properties.Resources.resources
 C:\Users\lukas\Desktop\paczka\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csproj.GenerateResource.Cache
+C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\bin\Debug\PlatesRecognition.exe.config
+C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.exe
+C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.pdb
