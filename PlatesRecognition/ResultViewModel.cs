@@ -43,10 +43,26 @@ namespace PlatesRecognition
             }
         }
 
+        public float Confidence
+        {
+            get
+            {
+                return _confidence;
+            }
+            set
+            {
+                if (_confidence != value)
+                {
+                    OnPropertyChanged(nameof(Confidence));
+                    _confidence = value;
+                }
+            }
+        }
         private string _plateCharacters;
         private TimeSpan _timeSpan;
+        private float _confidence;
 
-        public ResultViewModel(string plateCharacters, TimeSpan timespan)
+        public ResultViewModel(string plateCharacters, TimeSpan timespan, float confidence)
         {
             if (string.IsNullOrEmpty(plateCharacters)) throw new ArgumentNullException(nameof(plateCharacters));
             if (timespan == null) throw new ArgumentNullException(nameof(timespan));
@@ -54,7 +70,7 @@ namespace PlatesRecognition
 
             PlateCharacters = plateCharacters;
             TimeSpan = timespan;
-
+            Confidence = confidence;
         }
     }
 }

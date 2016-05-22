@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlatesRecognition.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="443.724">
+             d:DesignHeight="503" d:DesignWidth="987.724">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -14,18 +14,25 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
+       
+        <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+            <DataGrid ItemsSource="{Binding ResultsList, ElementName=userControl}"
+                  AutoGenerateColumns="False" 
+                  
+                  Margin="10 10 10 10">
 
-        <DataGrid ItemsSource="{Binding ResultsList, ElementName=userControl}" AutoGenerateColumns="False"  Grid.Column="0" Grid.Row="1" Margin="10 10 10 10"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding PlateCharacters}" Header="Recognized plate" Width="*"/>
-                <DataGridTextColumn Binding="{Binding TimeSpan}" Header="Time stamp" Width="*"/>
-            </DataGrid.Columns>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding PlateCharacters}" Header="Recognized plate" Width="Auto"/>
+                    <DataGridTextColumn Binding="{Binding TimeSpan}" Header="Time stamp" Width="Auto"/>
+                    <DataGridTextColumn Binding="{Binding Confidence}" Header="Confidence" Width="Auto"/>
+                </DataGrid.Columns>
 
-        </DataGrid>
+            </DataGrid>
+        </ScrollViewer>
+      
 
         <Grid Grid.Column="1" Grid.Row="1" Margin="10">
 
@@ -34,7 +41,7 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
-         
+
 
             <ContentControl Content="{Binding SourceMediaElement,ElementName=userControl}"  Grid.Column="0" Grid.Row="0" />
 
@@ -45,18 +52,15 @@
                 <Line x:Name="ThirdLine" Stroke="Red"  StrokeThickness="3"/>
                 <Line x:Name="FourthLine" Stroke="Red"  StrokeThickness="3"/>
             </Canvas>
-                       
+
 
             <Slider x:Name="Slider"  Grid.Row="1" HorizontalAlignment="Stretch" 
                     Value="{Binding VideoAcutalPosition,ElementName=userControl}" Maximum="100"  />
-         
-           
+
+
 
             <TextBlock x:Name="VideoTimeTextBlock"
-                       Grid.Column="1" Grid.Row="1"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Visibility="Collapsed" Height="0" Margin="0,20" Width="0"/>
+                        Grid.Row="1"  Margin="0,0,10,0" HorizontalAlignment="Right" Width="72" Height="20" VerticalAlignment="Bottom"/>
 
             <!--
             <Button x:Name="PlayButton" Content="Stop"
@@ -87,5 +91,6 @@
                 <MenuItem Header="_Help" Click="Help_OnClick"/>
             -->
         </Menu>
+        <TextBlock Text="{Binding FileName}" Grid.Column="1" HorizontalAlignment="Right" Width="329" Height="48" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

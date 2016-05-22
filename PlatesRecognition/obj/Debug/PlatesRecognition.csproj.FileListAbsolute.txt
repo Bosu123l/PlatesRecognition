@@ -50,3 +50,4 @@ C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\Pl
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.Properties.Resources.resources
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csproj.GenerateResource.Cache
 C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\App.baml
+C:\Users\lukas\Documents\GitHub\PlatesRecognition\PlatesRecognition\obj\Debug\PlatesRecognition.csprojResolveAssemblyReference.cache

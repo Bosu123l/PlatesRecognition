@@ -81,9 +81,25 @@ namespace PlatesRecognition.Views
                 }
             }
         }
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                if (_fileName != value)
+                {
+                    OnPropertyChanged(nameof(FileName));
+                    _fileName = value;
+                }
+            }
+        }
+
         private readonly DispatcherTimer _videoTimer;
 
         private readonly DispatcherTimer _processTimer;
+
+        private readonly DispatcherTimer _lineTimer;
 
         private readonly Config _config;
 
@@ -92,6 +108,7 @@ namespace PlatesRecognition.Views
         private double _videoDuration;
         private double _videoAcutalPosition;
         private string LastRecognizedPlate;
+        private string _fileName;
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -110,6 +127,11 @@ namespace PlatesRecognition.Views
             _processTimer = new DispatcherTimer();
             _processTimer.Interval = TimeSpan.FromMilliseconds(500); //0,5 sec
             _processTimer.Tick += _processTimer_Tick;
+
+
+            _lineTimer = new DispatcherTimer();
+            _lineTimer.Interval = TimeSpan.FromMilliseconds(3000); //3 sec
+            _lineTimer.Tick += _lineTimer_Tick;
 
 
             ResultsList = new ObservableCollection<ResultViewModel>();
@@ -132,6 +154,13 @@ namespace PlatesRecognition.Views
 
 
         }
+
+        private void _lineTimer_Tick(object sender, EventArgs e)
+        {
+            HideLines();
+            _lineTimer.Stop();
+        }
+
         private void _processTimer_Tick(object sender, EventArgs e)
         {
             if (SourceMediaElement.Position.Seconds < 1) return;
@@ -160,15 +189,19 @@ namespace PlatesRecognition.Views
 
             foreach (var plate in result.Plates)
             {
+                if (plate.BestPlate.Characters.Length >= 7)
+                {
+                    ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position, plate.BestPlate.OverallConfidence));
 
+                    _lineTimer.Start();
 
-                ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position));
+                }
 
                 SetFirstLines(plate);
                 SetSecondLines(plate);
                 SetThirdLines(plate);
                 SetFourthLines(plate);
-                //}
+
 
 
                 //LastRecognizedPlate = plate.BestPlate.Characters;
@@ -187,8 +220,6 @@ namespace PlatesRecognition.Views
         }
         private void SetSecondLines(AlprPlateResultNet plate)
         {
-
-
             SecondLine.X1 = plate.PlatePoints[1].X;
             SecondLine.Y1 = plate.PlatePoints[1].Y;
 
@@ -206,8 +237,6 @@ namespace PlatesRecognition.Views
         }
         private void SetFourthLines(AlprPlateResultNet plate)
         {
-
-
             FourthLine.X1 = plate.PlatePoints[3].X;
             FourthLine.Y1 = plate.PlatePoints[3].Y;
 
@@ -216,6 +245,13 @@ namespace PlatesRecognition.Views
             FourthLine.Y2 = plate.PlatePoints[0].Y;
         }
 
+        private void HideLines()
+        {
+            FirstLine.X1 = FirstLine.X2 = FirstLine.Y2 = FirstLine.Y2 = 5000;
+            SecondLine.X1 = SecondLine.X2 = SecondLine.Y2 = SecondLine.Y2 = 5000;
+            ThirdLine.X1 = ThirdLine.X2 = ThirdLine.Y2 = ThirdLine.Y2 = 5000;
+            FourthLine.X1 = FourthLine.X2 = FourthLine.Y2 = FourthLine.Y2 = 5000;
+        }
 
         private void VideoTimer_Tick(object sender, EventArgs e)
         {
@@ -266,7 +302,7 @@ namespace PlatesRecognition.Views
                 }
                 else
                 {
-
+                    FileName = System.IO.Path.GetFileName(dialog.FileName);
                     SourceMediaElement.Source = new Uri(dialog.FileName, UriKind.RelativeOrAbsolute);
                     //  SplashScreenImage.Visibility = Visibility.Collapsed;
                     VideoTimeTextBlock.Visibility = Visibility.Visible;
