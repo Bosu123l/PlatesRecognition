@@ -327,6 +327,7 @@ namespace PlatesRecognition.Views
                     SourceMediaElement.Source = new Uri(dialog.FileName, UriKind.RelativeOrAbsolute);
                     //  SplashScreenImage.Visibility = Visibility.Collapsed;
                     VideoTimeTextBlock.Visibility = Visibility.Visible;
+                    ResultsList.Clear();
                     SourceMediaElement.Play();
                     if (SourceMediaElement.NaturalDuration.HasTimeSpan)
                     {
