@@ -121,7 +121,7 @@ namespace PlatesRecognition.Views
         public MainView()
         {
             _videoTimer = new DispatcherTimer();
-            _videoTimer.Interval = TimeSpan.FromSeconds(1);
+            _videoTimer.Interval = TimeSpan.FromMilliseconds(200);
             _videoTimer.Tick += VideoTimer_Tick;
 
             _processTimer = new DispatcherTimer();
@@ -191,7 +191,15 @@ namespace PlatesRecognition.Views
             {
                 if (plate.BestPlate.Characters.Length >= 7)
                 {
-                    ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position, plate.BestPlate.OverallConfidence));
+                    if (plate.BestPlate.OverallConfidence > 85)
+                    {
+                        ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position, plate.BestPlate.OverallConfidence, true));
+                    }
+                    else
+                    {
+                        ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position, plate.BestPlate.OverallConfidence));
+                    }
+
 
                     _lineTimer.Start();
 
@@ -202,9 +210,6 @@ namespace PlatesRecognition.Views
                 SetThirdLines(plate);
                 SetFourthLines(plate);
 
-
-
-                //LastRecognizedPlate = plate.BestPlate.Characters;
             }
 
 

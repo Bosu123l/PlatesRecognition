@@ -58,11 +58,29 @@ namespace PlatesRecognition
                 }
             }
         }
+
+        public bool Correct
+        {
+            get
+            {
+                return _correct;
+
+            }
+            set
+            {
+                if (_correct != value)
+                {
+                    OnPropertyChanged(nameof(Correct));
+                    _correct = value;
+                }
+            }
+        }
         private string _plateCharacters;
         private TimeSpan _timeSpan;
         private float _confidence;
+        private bool _correct;
 
-        public ResultViewModel(string plateCharacters, TimeSpan timespan, float confidence)
+        public ResultViewModel(string plateCharacters, TimeSpan timespan, float confidence, bool correct = false)
         {
             if (string.IsNullOrEmpty(plateCharacters)) throw new ArgumentNullException(nameof(plateCharacters));
             if (timespan == null) throw new ArgumentNullException(nameof(timespan));
@@ -71,6 +89,8 @@ namespace PlatesRecognition
             PlateCharacters = plateCharacters;
             TimeSpan = timespan;
             Confidence = confidence;
+            Correct = correct;
+
         }
     }
 }

@@ -17,12 +17,21 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-       
+
         <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
             <DataGrid ItemsSource="{Binding ResultsList, ElementName=userControl}"
                   AutoGenerateColumns="False" 
                   
                   Margin="10 10 10 10">
+                <DataGrid.RowStyle>
+                    <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Correct}" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding PlateCharacters}" Header="Recognized plate" Width="Auto"/>
@@ -32,7 +41,7 @@
 
             </DataGrid>
         </ScrollViewer>
-      
+
 
         <Grid Grid.Column="1" Grid.Row="1" Margin="10">
 
