@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
-            <DataGrid ItemsSource="{Binding ResultsList, ElementName=userControl}"
+            <DataGrid IsReadOnly="True" ItemsSource="{Binding ResultsList, ElementName=userControl}"
                   AutoGenerateColumns="False" 
                   
                   Margin="10 10 10 10">
@@ -71,35 +71,27 @@
             <TextBlock x:Name="VideoTimeTextBlock"
                         Grid.Row="1"  Margin="0,0,10,0" HorizontalAlignment="Right" Width="72" Height="20" VerticalAlignment="Bottom"/>
 
-            <!--
-            <Button x:Name="PlayButton" Content="Stop"
-                    Grid.Column="0" Grid.Row="1" Width="100"
-                    HorizontalAlignment="Left"
-                    Visibility="Collapsed"/>
-            -->
+           
 
         </Grid>
 
         <Menu x:Name="MainMenu"
               IsMainMenu="True" 
-              Background="White"
+              Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
               Grid.Row="0" 
               Grid.Column="0" 
               Grid.ColumnSpan="2">
-            <MenuItem Header="_File">
+            <MenuItem Header="_File" FontSize="15">
                 <MenuItem Header="_Open..." Click="OpenFile_OnClick"/>
                 <Separator/>
                 <MenuItem Header="_Exit" Click="Exit_OnClick"/>
             </MenuItem>
-            <!--
-                <MenuItem Header="_Results">
-                    <MenuItem Header="_Export" Click="Export_OnClick"/>
-                    <MenuItem Header="_Clear" Click="Export_OnClick"/>
-                </MenuItem>
-            
-                <MenuItem Header="_Help" Click="Help_OnClick"/>
-            -->
+
         </Menu>
-        <TextBlock Text="{Binding FileName}" Grid.Column="1" HorizontalAlignment="Right" Width="329" Height="48" VerticalAlignment="Top"/>
+        <TextBlock 
+            FontSize="22" TextAlignment="Center" 
+            Text="{Binding LastRecognizedPlate,ElementName=userControl}"
+            Grid.Column="1" HorizontalAlignment="Center" Width="329" Height="48" 
+            Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
     </Grid>
 </UserControl>

@@ -95,6 +95,21 @@ namespace PlatesRecognition.Views
             }
         }
 
+        public string LastRecognizedPlate
+        {
+            get
+            {
+                return _lastRecognizedPlate;
+
+            }
+            set
+            {
+
+                OnPropertyChanged(nameof(LastRecognizedPlate));
+                _lastRecognizedPlate = value;
+
+            }
+        }
         private readonly DispatcherTimer _videoTimer;
 
         private readonly DispatcherTimer _processTimer;
@@ -107,7 +122,7 @@ namespace PlatesRecognition.Views
         private MediaElement _sourceMediaElement;
         private double _videoDuration;
         private double _videoAcutalPosition;
-        private string LastRecognizedPlate;
+        private string _lastRecognizedPlate;
         private string _fileName;
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -125,12 +140,12 @@ namespace PlatesRecognition.Views
             _videoTimer.Tick += VideoTimer_Tick;
 
             _processTimer = new DispatcherTimer();
-            _processTimer.Interval = TimeSpan.FromMilliseconds(500); //0,5 sec
+            _processTimer.Interval = TimeSpan.FromMilliseconds(20); //0,2 sec
             _processTimer.Tick += _processTimer_Tick;
 
 
             _lineTimer = new DispatcherTimer();
-            _lineTimer.Interval = TimeSpan.FromMilliseconds(3000); //3 sec
+            _lineTimer.Interval = TimeSpan.FromMilliseconds(500); //0,5 sec
             _lineTimer.Tick += _lineTimer_Tick;
 
 
@@ -147,7 +162,7 @@ namespace PlatesRecognition.Views
             SourceMediaElement.UnloadedBehavior = MediaState.Manual;
 
 
-            LastRecognizedPlate = string.Empty;
+
 
             InitializeComponent();
 
@@ -194,6 +209,7 @@ namespace PlatesRecognition.Views
                     if (plate.BestPlate.OverallConfidence > 85)
                     {
                         ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position, plate.BestPlate.OverallConfidence, true));
+                        LastRecognizedPlate = plate.BestPlate.Characters;
                     }
                     else
                     {

@@ -43,7 +43,7 @@ namespace PlatesRecognition
             }
         }
 
-        public float Confidence
+        public string Confidence
         {
             get
             {
@@ -77,7 +77,7 @@ namespace PlatesRecognition
         }
         private string _plateCharacters;
         private TimeSpan _timeSpan;
-        private float _confidence;
+        private string _confidence;
         private bool _correct;
 
         public ResultViewModel(string plateCharacters, TimeSpan timespan, float confidence, bool correct = false)
@@ -88,7 +88,7 @@ namespace PlatesRecognition
 
             PlateCharacters = plateCharacters;
             TimeSpan = timespan;
-            Confidence = confidence;
+            Confidence = string.Format("{0:0.##} %", confidence);
             Correct = correct;
 
         }
