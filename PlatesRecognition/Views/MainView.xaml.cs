@@ -110,11 +110,61 @@ namespace PlatesRecognition.Views
 
             }
         }
+
+        public int ProcessTimerValue
+        {
+            get
+            {
+                return _processTimerValue;
+
+            }
+            set
+            {
+                if (_processTimerValue != value)
+                {
+                    OnPropertyChanged(nameof(ProcessTimerValue));
+                    _processTimerValue = value;
+                }
+            }
+        }
+
+        public int PlateAreaValue
+        {
+            get
+            {
+                return _plateAreaValue;
+
+            }
+            set
+            {
+                if (_plateAreaValue != value)
+                {
+                    OnPropertyChanged(nameof(PlateAreaValue));
+                    _plateAreaValue = value;
+                }
+            }
+        }
+        public int Confidence
+        {
+            get
+            {
+                return _confidence;
+
+            }
+            set
+            {
+                if (_confidence != value)
+                {
+                    OnPropertyChanged(nameof(Confidence));
+                    _confidence = value;
+                }
+            }
+        }
         private readonly DispatcherTimer _videoTimer;
 
-        private readonly DispatcherTimer _processTimer;
+        private DispatcherTimer _processTimer;
 
-        private readonly DispatcherTimer _lineTimer;
+        private DispatcherTimer _lineTimer;
 
         private readonly Config _config;
 
@@ -124,6 +174,9 @@ namespace PlatesRecognition.Views
         private double _videoAcutalPosition;
         private string _lastRecognizedPlate;
         private string _fileName;
+        private int _processTimerValue;
+        private int _plateAreaValue;
+        private int _confidence;
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -145,9 +198,13 @@ namespace PlatesRecognition.Views
 
 
             _lineTimer = new DispatcherTimer();
-            _lineTimer.Interval = TimeSpan.FromMilliseconds(500); //0,5 sec
+            _lineTimer.Interval = TimeSpan.FromMilliseconds(100); //0,5 sec
             _lineTimer.Tick += _lineTimer_Tick;
 
+
+            PlateAreaValue = 100;
+            ProcessTimerValue = 20;
+            Confidence = 85;
 
             ResultsList = new ObservableCollection<ResultViewModel>();
 
@@ -157,6 +214,7 @@ namespace PlatesRecognition.Views
 
 
             SourceMediaElement = new MediaElement();
+            SourceMediaElement.Volume = 0;
 
             SourceMediaElement.LoadedBehavior = MediaState.Manual;
             SourceMediaElement.UnloadedBehavior = MediaState.Manual;
@@ -206,7 +264,7 @@ namespace PlatesRecognition.Views
             {
                 if (plate.BestPlate.Characters.Length >= 7)
                 {
-                    if (plate.BestPlate.OverallConfidence > 85)
+                    if (plate.BestPlate.OverallConfidence > Confidence)
                     {
                         ResultsList.Add(new ResultViewModel(plate.BestPlate.Characters, SourceMediaElement.Position, plate.BestPlate.OverallConfidence, true));
                         LastRecognizedPlate = plate.BestPlate.Characters;
@@ -356,5 +414,18 @@ namespace PlatesRecognition.Views
 
         }
 
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            _lineTimer.Stop();
+            _lineTimer.Interval = TimeSpan.FromMilliseconds(PlateAreaValue);
+            _lineTimer.Start();
+        }
+
+        private void Slider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            _processTimer.Stop();
+            _processTimer.Interval = TimeSpan.FromMilliseconds(PlateAreaValue);
+            _processTimer.Start();
+        }
     }
 }

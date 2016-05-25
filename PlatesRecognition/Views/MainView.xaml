@@ -10,6 +10,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -17,12 +18,56 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="#FF7FBFFF">
 
-        <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Plate area time [ms]" Grid.Column="0" Width="105" Margin="5,0,0,0"/>
+                <TextBox Width="30" Grid.Column="1" Margin="5,0,5,-3" Text="{Binding PlateAreaValue,ElementName=userControl}"/>
+                <Slider Grid.Column="2" Value="{Binding PlateAreaValue,ElementName=userControl}" SmallChange="1" Maximum="5000" Minimum="1"  ValueChanged="Slider_ValueChanged" Margin="0,5,5,0"/>
+            </Grid>
+
+
+            <Grid Margin="5,7,0,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Process timer [ms] " Grid.Column="0" Width="105" Margin="0,7,0,0"/>
+                <TextBox Width="30" Grid.Column="1" Margin="5,0" Text="{Binding ProcessTimerValue,ElementName=userControl}"/>
+                <Slider Grid.Column="2" Value="{Binding ProcessTimerValue,ElementName=userControl}" SmallChange="1" Maximum="5000" Minimum="1" ValueChanged="Slider_ValueChanged_1" Margin="0,5,5,0"/>
+
+            </Grid>
+
+            <!--<Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Plate area duration" Grid.Column="0"/>
+                    <TextBox Width="30" Grid.Column="1"/>
+                    <Slider Grid.Column="2"/>
+                </Grid>-->
+
+
+
+
+        </StackPanel>
+
+        <ScrollViewer Grid.Column="0" Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  >
             <DataGrid IsReadOnly="True" ItemsSource="{Binding ResultsList, ElementName=userControl}"
                   AutoGenerateColumns="False" 
                   
-                  Margin="10 10 10 10">
+                  Margin="10">
                 <DataGrid.RowStyle>
                     <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
                         <Style.Triggers>
@@ -41,9 +86,30 @@
 
             </DataGrid>
         </ScrollViewer>
+        <Grid Grid.Column="1" Grid.Row="1" Height="59" VerticalAlignment="Top" Background="#FF7FBFFF">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <Grid  Height="30" Margin="5,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Confidence"  Grid.Column="0" VerticalAlignment="Center" Height="21" />
+                <TextBox Grid.Column="1" Text="{Binding Confidence,ElementName=userControl}" TextAlignment="Center" Width="30" Margin="0,0,0,5" />
 
-        <Grid Grid.Column="1" Grid.Row="1" Margin="10">
+            </Grid>
+
+            <TextBlock Grid.Column="1" 
+            FontSize="22" TextAlignment="Center" 
+            Text="{Binding LastRecognizedPlate,ElementName=userControl}"
+            Height="48" Width="300"
+            Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" Margin="5,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="2" Margin="10,10,10,10">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -71,7 +137,7 @@
             <TextBlock x:Name="VideoTimeTextBlock"
                         Grid.Row="1"  Margin="0,0,10,0" HorizontalAlignment="Right" Width="72" Height="20" VerticalAlignment="Bottom"/>
 
-           
+
 
         </Grid>
 
@@ -80,18 +146,19 @@
               Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
               Grid.Row="0" 
               Grid.Column="0" 
-              Grid.ColumnSpan="2">
-            <MenuItem Header="_File" FontSize="15">
+              Grid.ColumnSpan="2" Height="27">
+            <MenuItem Header="File" FontSize="15" Height="27" Width="89">
                 <MenuItem Header="_Open..." Click="OpenFile_OnClick"/>
                 <Separator/>
                 <MenuItem Header="_Exit" Click="Exit_OnClick"/>
             </MenuItem>
 
         </Menu>
-        <TextBlock 
-            FontSize="22" TextAlignment="Center" 
-            Text="{Binding LastRecognizedPlate,ElementName=userControl}"
-            Grid.Column="1" HorizontalAlignment="Center" Width="329" Height="48" 
-            Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
+
+       
+
+
+
+
     </Grid>
 </UserControl>
