@@ -8,7 +8,7 @@ namespace PlatesRecognition
 {
     public class ResultViewModel : OnPropertyChangeImp
     {
-
+  
         public string PlateCharacters
         {
             get

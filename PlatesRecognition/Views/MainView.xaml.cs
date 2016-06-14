@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace PlatesRecognition.Views
 {
@@ -31,6 +32,24 @@ namespace PlatesRecognition.Views
         {
             get;
             set;
+        }
+
+
+        public bool StartPause
+        {
+            get
+            {
+                return _startPause;
+
+            }
+            set
+            {
+                if (_startPause != value)
+                {
+                    OnPropertyChanged(nameof(StartPause));
+                    _startPause = value;
+                }
+            }
         }
         public MediaElement SourceMediaElement
         {
@@ -162,9 +181,9 @@ namespace PlatesRecognition.Views
         }
         private readonly DispatcherTimer _videoTimer;
 
-        private DispatcherTimer _processTimer;
+        private readonly DispatcherTimer _processTimer;
 
-        private DispatcherTimer _lineTimer;
+        private readonly DispatcherTimer _lineTimer;
 
         private readonly Config _config;
 
@@ -177,6 +196,9 @@ namespace PlatesRecognition.Views
         private int _processTimerValue;
         private int _plateAreaValue;
         private int _confidence;
+        private bool _startPause;
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -200,6 +222,7 @@ namespace PlatesRecognition.Views
             _lineTimer = new DispatcherTimer();
             _lineTimer.Interval = TimeSpan.FromMilliseconds(100); //0,5 sec
             _lineTimer.Tick += _lineTimer_Tick;
+
 
 
             PlateAreaValue = 100;
@@ -367,6 +390,7 @@ namespace PlatesRecognition.Views
             dialog.Multiselect = false;
             dialog.Filter = "mp4 files (*.mp4)|*.mp4|avi files (*.avi)|*.avi|all files (*.*)|*.*";
 
+            Button_Click(this, new AccessKeyPressedEventArgs());
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult != null && dialogResult.Value)
@@ -426,6 +450,58 @@ namespace PlatesRecognition.Views
             _processTimer.Stop();
             _processTimer.Interval = TimeSpan.FromMilliseconds(PlateAreaValue);
             _processTimer.Start();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StartPause = !StartPause;
+
+
+
+
+            if (!StartPause)
+            {
+
+                SourceMediaElement.Pause();
+            }
+            else
+            {
+                SourceMediaElement.Play();
+
+            }
+
+        }
+
+        private void toCsV()
+        {
+
+            if (ResultsList.Count > 0)
+            {
+                foreach (ResultViewModel result in ResultsList)
+                {
+                    StreamWriter sw = File.AppendText("Results.csv");
+                    {
+                        sw.WriteLine(string.Format(@"{0};{1};", result.PlateCharacters, result.Confidence));
+
+                    }
+                    sw.Close();
+
+                }
+
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("No results in list!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            toCsV();
         }
     }
 }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlatesRecognition.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="503" d:DesignWidth="987.724">
+             d:DesignHeight="519" d:DesignWidth="987.724">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -112,16 +112,16 @@
         <Grid Grid.Column="1" Grid.Row="2" Margin="10,10,10,10">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition/>
+                <RowDefinition Height="74"/>
             </Grid.RowDefinitions>
 
 
 
-            <ContentControl Content="{Binding SourceMediaElement,ElementName=userControl}"  Grid.Column="0" Grid.Row="0" />
+            <ContentControl Content="{Binding SourceMediaElement,ElementName=userControl}"  Grid.Column="0" Grid.Row="0" Margin="0,0,0,17" />
 
             <Canvas x:Name="Canvas" Background="Transparent" 
-                   Grid.Column="0" Grid.Row="0">
+                   Grid.Column="0" Grid.Row="0" Margin="0,0,0,17">
                 <Line x:Name="FirstLine" Stroke="Red" StrokeThickness="3" />
                 <Line x:Name="SecondLine" Stroke="Red"  StrokeThickness="3"/>
                 <Line x:Name="ThirdLine" Stroke="Red"  StrokeThickness="3"/>
@@ -129,13 +129,28 @@
             </Canvas>
 
 
-            <Slider x:Name="Slider"  Grid.Row="1" HorizontalAlignment="Stretch" 
-                    Value="{Binding VideoAcutalPosition,ElementName=userControl}" Maximum="100"  />
+            <Slider x:Name="Slider" 
+                    Value="{Binding VideoAcutalPosition,ElementName=userControl}" Maximum="100" Grid.Row="1"  />
+
+            <DockPanel Margin="420,10,0,0"  Grid.Row="1" >
+
+                <Button x:Name="ButtonPlay" Height="Auto" Margin="0,29,0,10" Click="Button_Click" >
+                    <Button.Content>
+                        <Viewbox >
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M3,5V19L11,12M13,19H16V5H13M18,5V19H21V5" Fill="Black" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button.Content>
+                </Button>
+                <TextBlock x:Name="VideoTimeTextBlock"
+                       Margin="0,0,10,0" HorizontalAlignment="Right" Width="72" Height="35" VerticalAlignment="Bottom"/>
+
+            </DockPanel>
 
 
 
-            <TextBlock x:Name="VideoTimeTextBlock"
-                        Grid.Row="1"  Margin="0,0,10,0" HorizontalAlignment="Right" Width="72" Height="20" VerticalAlignment="Bottom"/>
+
 
 
 
@@ -150,15 +165,17 @@
             <MenuItem Header="File" FontSize="15" Height="27" Width="89">
                 <MenuItem Header="_Open..." Click="OpenFile_OnClick"/>
                 <Separator/>
+                <MenuItem Header="Save Results" Click="MenuItem_Click" />
                 <MenuItem Header="_Exit" Click="Exit_OnClick"/>
             </MenuItem>
 
         </Menu>
 
-       
 
 
 
 
     </Grid>
+
+
 </UserControl>
